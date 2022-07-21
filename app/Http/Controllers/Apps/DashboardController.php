@@ -45,19 +45,19 @@ class DashboardController extends Controller
         }
 
 
-        //count sales today
+        //menghitung jumlah transaksi penjualan hari ini
         $count_sales_today = Transaction::whereDay('created_at', $day)->count();
 
-        //sum sales today
+        //menjumlah total penjualan hari ini
         $sum_sales_today = Transaction::whereDay('created_at', $day)->sum('grand_total');
 
-        //sum profits today
+        //menjumlah total profit/laba hari ini
         $sum_profits_today = Profit::whereDay('created_at', $day)->sum('total');
 
-        //get product limit stock
+        //mengambil data produk yang stoknya hampir habis, yaitu di bawah 10
         $products_limit_stock = Product::with('category')->where('stock', '<=', 10)->get();
 
-        //chart best selling product
+        //memanggil data produk yang paling laris
         $chart_best_products = DB::table('transaction_details')
             ->addSelect(DB::raw('products.title as title, SUM(transaction_details.qty) as total'))
             ->join('products', 'products.id', '=', 'transaction_details.product_id')

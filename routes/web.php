@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route Home
 Route::get('/', function () {
-    return view('welcome');
+    return \Inertia\Inertia::render('Auth/Login');
+})->middleware('guest');
+
+// Prefix "apps"
+
+Route::prefix('apps')->group(function () {
+
+    // Middleware authentication
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('dashboard', App\Http\Controllers\Apps\DashboardController::class)->name('apps.dashboard');
+    });
 });
