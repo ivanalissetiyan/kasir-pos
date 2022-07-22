@@ -16,7 +16,7 @@
                                 <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> Penjualan 7 Hari</span>
                             </div>
                             <div class="card-body">
-
+                                    <BarChart :chartData="chartSellWeek" :options="options" />
                             </div>
                         </div>
                     </div>
@@ -28,9 +28,9 @@
                                 <span class="font-weight-bold"><i class="fa fa-chart-line"></i> Penjualan Hari ini</span>
                             </div>
                             <div class="card-body">
-                                <strong>0</strong>Penjualan
+                                <strong>{{ count_sales_today }}</strong>Penjualan
                                 <hr>
-                                <h5 class="fw-bold">Rp.0</h5>
+                                <h5 class="fw-bold">Rp {{ formatPrice(sum_sales_today)}}</h5>
                             </div>
                         </div>
 
@@ -40,7 +40,7 @@
                             <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> Profit Hari ini</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="fw-bold">Rp. 0</h5>
+                            <h5 class="fw-bold">Rp. {{ formatPrice(sum_profits_today) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -86,6 +86,17 @@ import LayoutApp from '../../../Layouts/App.vue';
 // Import inertiajs
 import { Head } from '@inertiajs/inertia-vue3';
 
+//import ref from vue
+import { ref } from 'vue';
+
+
+// Chart
+import { BarChart } from 'vue-chart-3';
+import { Chart, registerables } from "chart.js";
+
+// Register chart
+Chart.register(...registerables);
+
 export default {
     // layout
     layout: LayoutApp,
@@ -93,7 +104,78 @@ export default {
     // Register components
     components: {
         Head,
+        BarChart, 
     },
+
+    props:{
+        // Total penjualan hari ini
+        count_sales_today: Number,
+
+        // Jumlah (Rp) penjualan hari ini
+        sum_sales_today: Number,
+
+        // Jumlah profit/labar hari ini
+        sum_profits_today: Number,
+
+        // Chart sales
+        sales_date: Array,
+        grand_total: Array,
+    },
+
+    setup(props) {
+        
+        //method random color
+        function randomBackgroundColor(length) {
+            var data = [];
+            for (var i = 0; i < length; i++) {
+                data.push(getRandomColor());
+            }
+            return data;
+        }
+
+        //method generate random color
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+
+
+        // Option Chart
+        const options = ref({
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                title: {
+                    display: false,
+                },                
+            },
+            beginZero: true
+        });
+
+        // Chart sell week
+        const chartSellWeek = {
+            labels: props.sales_date,
+            datasets: [{
+                data: props.grand_total,
+                backgroundColor: randomBackgroundColor(props.sales_date.length),
+            }, ],
+
+        };
+
+        return {
+            options,
+            chartSellWeek,
+        };
+
+    }
+
 }
 
 </script>
