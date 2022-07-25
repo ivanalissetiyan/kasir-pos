@@ -16,7 +16,7 @@
                                 <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> Penjualan 7 Hari</span>
                             </div>
                             <div class="card-body">
-                                    <BarChart :chartData="chartSellWeek" :options="options" />
+                                <BarChart :chartData="chartSellWeek" :options="options" />
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,8 @@
                         <div v-if="hasAnyPermission(['dashboard.sales_today'])"
                             class="card border-0 rounded-3 shadow border-top-info mb-4">
                             <div class="card-header">
-                                <span class="font-weight-bold"><i class="fa fa-chart-line"></i> Penjualan Hari ini</span>
+                                <span class="font-weight-bold"><i class="fa fa-chart-line"></i> Penjualan Hari
+                                    ini</span>
                             </div>
                             <div class="card-body">
                                 <strong>{{ count_sales_today }}</strong>Penjualan
@@ -34,45 +35,59 @@
                             </div>
                         </div>
 
-                    <div v-if="hasAnyPermission(['dashboard.profits_today'])"
-                        class="card border-0 rounded-3 shadow border-top-success">
-                        <div class="card-header">
-                            <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> Profit Hari ini</span>
+                        <div v-if="hasAnyPermission(['dashboard.profits_today'])"
+                            class="card border-0 rounded-3 shadow border-top-success">
+                            <div class="card-header">
+                                <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> Profit Hari ini</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="fw-bold">Rp. {{ formatPrice(sum_profits_today) }}</h5>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="fw-bold">Rp. {{ formatPrice(sum_profits_today) }}</h5>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div v-if="hasAnyPermission(['dashboard.best_selling_product'])"
+                            class="card border-0 rounded-3 shadow border-top-warning">
+                            <div class="card-header">
+                                <span class="font-weight-bold"><i class="fa fa-chart-pie"></i> Product Terlaris</span>
+                            </div>
+                            <div class="card-body">
+                                <DoughnutChart :chartData="chartBestProduct" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div v-if="hasAnyPermission(['dashboard.product_stock'])"
+                            class="card border-0 rounded-3 shadow border-top-danger">
+                            <div class="card-header">
+                                <span class="font-weight-bold"><i class="fa fa-box-open"></i> Product Stock</span>
+                            </div>
+                            <div class="card-body">
+                                <div v-if="products_limit_stock.length > 0">
+                                    <ol class="list-group list-group-numbered">
+                                        <li v-for="product in products_limit_stock" :key="product.id"
+                                            class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="fw-bold">{{ product.title }} </div>
+                                                <div class="fw-bold">Category : {{ product.category.name }}</div>
+                                            </div>
+                                            <span class="badge bg-danger rounded-pill">{{ product.stock }}</span>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div v-else class="alert alert-danger border-0 shadow rounded-3">
+                                    Data Tidak Tersedia
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div v-if="hasAnyPermission(['dashboard.best_selling_product'])"
-                        class="card border-0 rounded-3 shadow border-top-warning">
-                        <div class="card-header">
-                            <span class="font-weight-bold"><i class="fa fa-chart-pie"></i> Product Terlaris</span>
-                        </div>
-                        <div class="card-body">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div v-if="hasAnyPermission(['dashboard.product_stock'])"
-                        class="card border-0 rounded-3 shadow border-top-danger">
-                        <div class="card-header">
-                            <span class="font-weight-bold"><i class="fa fa-box-open"></i> Product Stock</span>
-                        </div>
-                        <div class="card-body">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
         </div>
     </main>
 
@@ -91,7 +106,7 @@ import { ref } from 'vue';
 
 
 // Chart
-import { BarChart } from 'vue-chart-3';
+import { BarChart, DoughnutChart } from 'vue-chart-3';
 import { Chart, registerables } from "chart.js";
 
 // Register chart
@@ -104,7 +119,8 @@ export default {
     // Register components
     components: {
         Head,
-        BarChart, 
+        BarChart,
+        DoughnutChart,
     },
 
     props:{
@@ -120,6 +136,13 @@ export default {
         // Chart sales
         sales_date: Array,
         grand_total: Array,
+
+        // Produk Terlaris
+        product: Array,
+        total: Array,
+
+        // Produk limit stok
+        products_limit_stock: Array,
     },
 
     setup(props) {
@@ -169,9 +192,21 @@ export default {
 
         };
 
+        // Chart Product Terlaris
+        const chartBestProduct = {
+            labels: props.product,
+            // Data dari props "product"
+            datasets: [{
+                data: props.total,
+                // Data dari props "total"
+                backgroundColor: randomBackgroundColor(5),
+            }, ],
+        };
+
         return {
             options,
             chartSellWeek,
+            chartBestProduct,
         };
 
     }

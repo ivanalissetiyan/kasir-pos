@@ -19640,7 +19640,8 @@ chart_js__WEBPACK_IMPORTED_MODULE_4__.Chart.register.apply(chart_js__WEBPACK_IMP
   // Register components
   components: {
     Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
-    BarChart: vue_chart_3__WEBPACK_IMPORTED_MODULE_3__.BarChart
+    BarChart: vue_chart_3__WEBPACK_IMPORTED_MODULE_3__.BarChart,
+    DoughnutChart: vue_chart_3__WEBPACK_IMPORTED_MODULE_3__.DoughnutChart
   },
   props: {
     // Total penjualan hari ini
@@ -19651,7 +19652,12 @@ chart_js__WEBPACK_IMPORTED_MODULE_4__.Chart.register.apply(chart_js__WEBPACK_IMP
     sum_profits_today: Number,
     // Chart sales
     sales_date: Array,
-    grand_total: Array
+    grand_total: Array,
+    // Produk Terlaris
+    product: Array,
+    total: Array,
+    // Produk limit stok
+    products_limit_stock: Array
   },
   setup: function setup(props) {
     //method random color
@@ -19697,10 +19703,21 @@ chart_js__WEBPACK_IMPORTED_MODULE_4__.Chart.register.apply(chart_js__WEBPACK_IMP
         data: props.grand_total,
         backgroundColor: randomBackgroundColor(props.sales_date.length)
       }]
+    }; // Chart Product Terlaris
+
+    var chartBestProduct = {
+      labels: props.product,
+      // Data dari props "product"
+      datasets: [{
+        data: props.total,
+        // Data dari props "total"
+        backgroundColor: randomBackgroundColor(5)
+      }]
     };
     return {
       options: options,
-      chartSellWeek: chartSellWeek
+      chartSellWeek: chartSellWeek,
+      chartBestProduct: chartBestProduct
     };
   }
 });
@@ -20668,22 +20685,18 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_25 = {
   "class": "card-body"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_26 = [_hoisted_24, _hoisted_25];
-var _hoisted_27 = {
+};
+var _hoisted_26 = {
   "class": "col-md-6"
 };
-var _hoisted_28 = {
+var _hoisted_27 = {
   key: 0,
   "class": "card border-0 rounded-3 shadow border-top-danger"
 };
 
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card-header"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "font-weight-bold"
@@ -20693,17 +20706,37 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = {
   "class": "card-body"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_31 = [_hoisted_29, _hoisted_30];
+};
+var _hoisted_30 = {
+  key: 0
+};
+var _hoisted_31 = {
+  "class": "list-group list-group-numbered"
+};
+var _hoisted_32 = {
+  "class": "ms-2 me-auto"
+};
+var _hoisted_33 = {
+  "class": "fw-bold"
+};
+var _hoisted_34 = {
+  "class": "fw-bold"
+};
+var _hoisted_35 = {
+  "class": "badge bg-danger rounded-pill"
+};
+var _hoisted_36 = {
+  key: 1,
+  "class": "alert alert-danger border-0 shadow rounded-3"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   var _component_BarChart = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BarChart");
+
+  var _component_DoughnutChart = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DoughnutChart");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -20723,7 +20756,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.hasAnyPermission(['dashboard.profits_today']) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_20, "Rp. " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.formatPrice($props.sum_profits_today)), 1
   /* TEXT */
-  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_ctx.hasAnyPermission(['dashboard.best_selling_product']) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, _hoisted_26)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_ctx.hasAnyPermission(['dashboard.product_stock']) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, _hoisted_31)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])], 64
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_ctx.hasAnyPermission(['dashboard.best_selling_product']) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DoughnutChart, {
+    chartData: $setup.chartBestProduct
+  }, null, 8
+  /* PROPS */
+  , ["chartData"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_ctx.hasAnyPermission(['dashboard.product_stock']) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [$props.products_limit_stock.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", _hoisted_31, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.products_limit_stock, function (product) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: product.id,
+      "class": "list-group-item d-flex justify-content-between align-items-start"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.title), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, "Category : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.category.name), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.stock), 1
+    /* TEXT */
+    )]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, " Data Tidak Tersedia "))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
