@@ -166,8 +166,6 @@ export default {
             return color;
         }
 
-
-
         // Option Chart
         const options = ref({
             responsive: true,

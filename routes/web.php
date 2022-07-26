@@ -29,7 +29,11 @@ Route::prefix('apps')->group(function () {
         Route::get('dashboard', App\Http\Controllers\Apps\DashboardController::class)->name('apps.dashboard');
 
         // Route Permissions
-        Route::get('/permissions', App\Http\Controllers\Apps\PermissionController::class)->name('apps.permissions.index')
+        Route::get('/permissions', \App\Http\Controllers\Apps\PermissionController::class)->name('apps.permissions.index')
             ->middleware('permission:permissions.index');
+
+        // Route resource roles
+        Route::resource('/roles', \App\Http\Controllers\Apps\RoleController::class, ['as' => 'apps'])
+            ->middleware('permission:roles.index|roles.create|roles.edit|roles.update|roles.delete');
     });
 });

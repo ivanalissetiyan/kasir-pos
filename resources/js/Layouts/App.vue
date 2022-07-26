@@ -26,7 +26,7 @@
                 <footer class="c-footer">
                     <div>
                         <strong>Aplikasi Kasir</strong>
-                        &copy; 2022 @ivanalissetiyan
+                        &copy; 2022
                     </div>
                 </footer>
 
