@@ -24,6 +24,12 @@ Route::prefix('apps')->group(function () {
 
     // Middleware authentication
     Route::group(['middleware' => ['auth']], function () {
+
+        // Route Dashboard
         Route::get('dashboard', App\Http\Controllers\Apps\DashboardController::class)->name('apps.dashboard');
+
+        // Route Permissions
+        Route::get('/permissions', App\Http\Controllers\Apps\PermissionController::class)->name('apps.permissions.index')
+            ->middleware('permission:permissions.index');
     });
 });
