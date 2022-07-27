@@ -54,14 +54,14 @@ class RoleController extends Controller
         // validate request
         $this->validate($request, [
             'name'      => 'required',
-            'permission' => 'required',
+            'permissions' => 'required',
         ]);
 
         // Create role
         $role = Role::create(['name' => $request->name]);
 
         // Assign permissions to role
-        $role->givePermissions($request->permission);
+        $role->givePermissionTo($request->permissions);
 
         // Redirect
         return redirect()->route('apps.roles.index');
