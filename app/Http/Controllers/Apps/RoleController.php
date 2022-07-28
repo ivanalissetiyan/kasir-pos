@@ -22,7 +22,7 @@ class RoleController extends Controller
         })->with('permissions')->latest()->paginate(5);
 
         // Render with inertia
-        return inertia('Apps/Roles/Index', [
+        return Inertia('Apps/Roles/Index', [
             'roles' => $roles,
         ]);
     }
