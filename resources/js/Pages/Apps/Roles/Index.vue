@@ -29,14 +29,13 @@
                                         <tr v-for="(role, index) in roles.data" :key="index">
                                             <td>{{ role.name }}</td>
                                             <td>
-                                                <span v-for="(permission,index) in role.permissions" :key="index"
-                                                    class="badge badge-primary shadow border-0 ms-2 mb-2">
+                                                <span v-for="(permission,index) in role.permissions" :key="index" class="badge badge-primary shadow border-0 ms-2 mb-2">
                                                     {{ permission.name }}
                                                 </span>
                                             </td>
                                             <td class="text-center">
                                                 <Link :href="`/apps/roles/${role.id}/edit`" v-if="hasAnyPermission(['roles.edit'])" class="btn btn-success btn-sm me-2"><i class="fa fa-pencil-alt me-1"></i>Edit</Link>
-                                                <button v-if="hasAnyPermission(['roles.delete'])" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</button>
+                                                <button @click.prevent="destroy(role.id)" v-if="hasAnyPermission(['roles.delete'])" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -67,6 +66,9 @@
     // import inertia adapter
     import { Inertia } from '@inertiajs/inertia';
 
+    // Import Sweet Alert 2
+    import Swal from 'sweetalert2';
+
     export default {
 
     // Layout
@@ -96,11 +98,38 @@
             });
         }
 
+        // Define method destroy
+        const destroy = (id) => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+
+                        Inertia.delete(`/apps/roles/${id}`);
+
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'Role Deleted Successfully.',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false,
+                        });
+                    }
+                })
+        }
 
         //return
         return {
             search,
             handleSearch,
+            destroy
         }
     }
 
