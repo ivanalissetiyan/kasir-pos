@@ -35,11 +35,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //get user all
+        //get Roles
         $roles = Role::all();
 
         // render with inertia
-        return Inertia('Apps/Users/Create', [
+        return Inertia::render('Apps/Users/Create', [
             'roles' => $roles
         ]);
     }
@@ -52,24 +52,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // validate request
+        /**
+         * Validate request
+         */
         $this->validate($request, [
-            'name'      => 'required',
-            'email' => 'required|unique:users',
-            'password' => 'required|confirmed',
+            'name'     => 'required',
+            'email'    => 'required|unique:users',
+            'password' => 'required|confirmed'
         ]);
 
-        // Create User
+        /**
+         * Create user
+         */
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => bcrypt($request->password)
         ]);
 
-        // Assign roles to users
-        $user->givePermissionTo($request->roles);
+        //assign roles to user
+        $user->assignRole($request->roles);
 
-        // Redirect
+        //redirect
         return redirect()->route('apps.users.index');
     }
 
