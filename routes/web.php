@@ -39,5 +39,9 @@ Route::prefix('apps')->group(function () {
         // Route resource users
         Route::resource('/users', \App\Http\Controllers\Apps\UserController::class, ['as' => 'apps'])
             ->middleware('permission:users.index|users.create|users.edit|users.delete');
+
+        // Route resource categories
+        Route::resource('/categories', \App\Http\Controllers\Apps\CategoryController::class, ['as' => 'apps'])
+            ->middleware('permission:categories.index|categories.create|categories.edit|categories.delete');
     });
 });
