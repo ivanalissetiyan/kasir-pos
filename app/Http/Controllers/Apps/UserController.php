@@ -165,6 +165,6 @@ class UserController extends Controller
         $user->delete();
 
         // redirect
-        return redirect()->route('apps.user.index');
+        return redirect()->route('apps.users.index');
     }
 }

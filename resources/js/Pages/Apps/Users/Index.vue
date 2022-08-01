@@ -38,8 +38,8 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <Link href="#" v-if="hasAnyPermission(['users.edit'])" class="btn btn-success btn-sm me-2"><i class="fa fa-pencil-alt me-1"></i>Edit</Link>
-                                                <button @click.prevent="destroy(role.id)" v-if="hasAnyPermission(['users.delete'])" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</button>
+                                                <Link :href="`/apps/users/${user.id}/edit`" v-if="hasAnyPermission(['users.edit'])" class="btn btn-success btn-sm me-2"><i class="fa fa-pencil-alt me-1"></i>Edit</Link>
+                                                <button @click.prevent="destroy(user.id)" v-if="hasAnyPermission(['users.delete'])" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -133,6 +133,7 @@
         return {
             search,
             handleSearch,
+            destroy,
         }
     }
 
