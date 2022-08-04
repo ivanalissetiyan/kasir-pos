@@ -23,7 +23,7 @@ class CategoryController extends Controller
         })->latest()->paginate(5);
 
         // Render with inertia
-        return Inertia::render('Apps/Category/Index', [
+        return Inertia::render('Apps/Categories/Index', [
             'categories' => $categories,
         ]);
     }
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Apps/Category/Create');
+        return Inertia::render('Apps/Categories/Create');
     }
 
     /**
