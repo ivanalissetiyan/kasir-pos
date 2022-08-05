@@ -41,6 +41,7 @@
                                     <div v-if="errors.description" class="alert alert-danger">
                                         {{ errors.description }}
                                     </div>
+                                    
                                     <div class="row">
                                         <div class="col-12">
                                             <button class="btn btn-primary shadow-sm rounded-sm"

@@ -92,7 +92,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // Rander with inertia
-        return Inertia::render('Apps/Category/Edit', [
+        return Inertia::render('Apps/Categories/Edit', [
             'category' => $category,
         ]);
     }
@@ -120,7 +120,7 @@ class CategoryController extends Controller
 
             // Upload new image
             $image = $request->file('image');
-            $image->storeAs('public/categories', $image->hashName(true));
+            $image->storeAs('public/categories', $image->hashName());
 
             // Update Category with new Image
             $category->update([

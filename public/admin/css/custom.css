@@ -9,26 +9,26 @@ body {
 }
 
 .border-top-purple {
-    border-top: 5px solid #894b9d !important;
+    border-top: 5px solid #008080 !important;
 }
 
 .btn-primary {
-    background-color: #894b9d !important;
-    border-color: #894b9d !important;
+    background-color: #008080 !important;
+    border-color: #008080 !important;
 }
 
 .btn-primary:hover {
-    background-color: #894b9d !important;
-    border-color: #894b9d !important;
+    background-color: rgb(7, 185, 185) !important;
+    border-color: #d3d3d3 !important;
 }
 
 .btn-primary:focus {
-    background-color: #894b9d !important;
-    border-color: #894b9d !important;
+    background-color: #008080 !important;
+    border-color: #008080 !important;
 }
 
 .text-primary {
-    color: #894b9d !important;
+    color: #008080 !important;
 }
 
 .c-sidebar .c-sidebar-nav-dropdown-toggle:hover,
