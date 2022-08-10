@@ -24,7 +24,7 @@ class ProductController extends Controller
             $products = $products->where('title', 'like', '%' . request()->q . '%');
         })->latest()->paginate(5);
 
-        // Return Inertia
+        // Return Inertia yang di hubungkan ke props di view
         return Inertia::render('Apps/Products/Index', [
             'products' => $products,
         ]);
