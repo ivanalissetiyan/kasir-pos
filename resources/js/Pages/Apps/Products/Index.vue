@@ -1,5 +1,4 @@
 <template>
-
     <Head>
         <title>Product - Aplikasi Kasir</title>
     </Head>
@@ -10,7 +9,7 @@
                     <div class="col-md-12">
                         <div class="card border-0 rounded-3 shadow border-top-purple">
                             <div class="card-header">
-                                <span class="font-weight-bold"><i class="fa fa-folder"></i> Product</span>
+                                <span class="font-weight-bold"><i class="shopping-bag"></i> Product</span>
                             </div>
                             <div class="card-body">
                                 <form @submit.prevent="handleSearch">
@@ -19,7 +18,7 @@
                                             class="btn btn-primary input-group-text"> <i
                                             class="fa fa-plus-circle me-2"></i> New </Link>
                                         <input type="text" v-model="search" class="form-control"
-                                            placeholder="search by product name....">
+                                            placeholder="search by product title....">
                                         <button class="btn btn-primary input-group-text" type="submit"><i
                                                 class="fa fa-search me-2"></i>Search</button>
                                     </div>
@@ -29,27 +28,25 @@
                                         <tr>
                                             <th scope="col">Barcode</th>
                                             <th scope="col">Title</th>
-                                            <th scope="col">Description</th>
                                             <th scope="col">Buy Price</th>
                                             <th scope="col">Sell Price</th>
                                             <th scope="col">Stock</th>
-                                            <th scope="col" style="width:20%">Actions</th>
+                                            <th scope="col" class="text-center" style="width:20%">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="(product, index) in products.data" :key="index">
-                                            <td>{{ product.barcode }}</td>
+                                            <td class="text-center">{{ product.barcode }}</td>
                                             <td>{{ product.title }}</td>
-                                            <td>{{ product.description }}</td>
                                             <td>Rp. {{ formatPrice(product.buy_price) }}</td>
                                             <td>Rp. {{ formatPrice(product.sell_price) }}</td>
                                             <td>{{ product.stock }}</td>
                                             <td class="text-center">
-                                                <Link :href="`/apps/products/${category.id}/edit`"
-                                                    v-if="hasAnyPermission(['products.edit'])"
+                                                <Link :href="`/apps/products/${product.id}/edit`"
+                                                    v-if="hasAnyPermission(['categories.edit'])"
                                                     class="btn btn-success btn-sm me-2"><i
                                                     class="fa fa-pencil-alt me-1"></i> EDIT</Link>
-                                                <button @click.prevent="destroy(category.id)"
+                                                <button @click.prevent="destroy(product.id)"
                                                     v-if="hasAnyPermission(['products.delete'])"
                                                     class="btn btn-danger btn-sm"><i
                                                         class="fa fa-trash"></i>Delete</button>
@@ -57,7 +54,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <Pagination :links="products.links" align="end" />
+                                <Pagination :links="products.links" align="end"/>
                             </div>
                         </div>
                     </div>
@@ -98,6 +95,7 @@ export default {
         Pagination
     },
 
+    // Props
     props: {
         products: Object,
     },
