@@ -28,7 +28,7 @@
                                             <label class="fw-bold">Category Name</label>
                                             <input class="form-control" v-model="form.name"
                                                 :class="{ 'is-invalid': errors.name }" type="text"
-                                                placeholder="Category Name">
+                                                placeholder="">
                                         </div>
                                         <div v-if="errors.name" class="alert alert-danger">
                                             {{ errors.name }}
@@ -38,7 +38,7 @@
                                             <label class="fw-bold">Description</label>
                                             <textarea class="form-control" v-model="form.description"
                                                 :class="{ 'is-invalid': errors.description }" type="text" rows="4"
-                                                placeholder="Description"></textarea>
+                                                placeholder=""></textarea>
                                         </div>
                                         <div v-if="errors.description" class="alert alert-danger">
                                             {{ errors.description }}
