@@ -49,7 +49,7 @@
                                                 <button @click.prevent="destroy(product.id)"
                                                     v-if="hasAnyPermission(['products.delete'])"
                                                     class="btn btn-danger btn-sm"><i
-                                                        class="fa fa-trash"></i>Delete</button>
+                                                    class="fa fa-trash"></i>Delete</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -132,7 +132,7 @@ export default {
 
                         Swal.fire({
                             title: 'Deleted!',
-                            text: 'Role Deleted Successfully.',
+                            text: 'Product Deleted Successfully.',
                             icon: 'success',
                             timer: 2000,
                             showConfirmButton: false,
