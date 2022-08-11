@@ -53438,6 +53438,69 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Apps/Customers/Create.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Apps/Customers/Create.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var C_xampp_htdocs_kasir_pos_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+const script = {}
+
+;
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_kasir_pos_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__["default"])(script, [['__file',"resources/js/Pages/Apps/Customers/Create.vue"]])
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Apps/Customers/Edit.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Apps/Customers/Edit.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var C_xampp_htdocs_kasir_pos_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+const script = {}
+
+;
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_kasir_pos_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__["default"])(script, [['__file',"resources/js/Pages/Apps/Customers/Edit.vue"]])
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Apps/Customers/Index.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/Pages/Apps/Customers/Index.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var C_xampp_htdocs_kasir_pos_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+const script = {}
+
+;
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_kasir_pos_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__["default"])(script, [['__file',"resources/js/Pages/Apps/Customers/Index.vue"]])
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Apps/Dashboard/Index.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/Pages/Apps/Dashboard/Index.vue ***!
@@ -54793,6 +54856,12 @@ var map = {
 	"./Apps/Categories/Edit.vue": "./resources/js/Pages/Apps/Categories/Edit.vue",
 	"./Apps/Categories/Index": "./resources/js/Pages/Apps/Categories/Index.vue",
 	"./Apps/Categories/Index.vue": "./resources/js/Pages/Apps/Categories/Index.vue",
+	"./Apps/Customers/Create": "./resources/js/Pages/Apps/Customers/Create.vue",
+	"./Apps/Customers/Create.vue": "./resources/js/Pages/Apps/Customers/Create.vue",
+	"./Apps/Customers/Edit": "./resources/js/Pages/Apps/Customers/Edit.vue",
+	"./Apps/Customers/Edit.vue": "./resources/js/Pages/Apps/Customers/Edit.vue",
+	"./Apps/Customers/Index": "./resources/js/Pages/Apps/Customers/Index.vue",
+	"./Apps/Customers/Index.vue": "./resources/js/Pages/Apps/Customers/Index.vue",
 	"./Apps/Dashboard/Index": "./resources/js/Pages/Apps/Dashboard/Index.vue",
 	"./Apps/Dashboard/Index.vue": "./resources/js/Pages/Apps/Dashboard/Index.vue",
 	"./Apps/Permissions/Index": "./resources/js/Pages/Apps/Permissions/Index.vue",
