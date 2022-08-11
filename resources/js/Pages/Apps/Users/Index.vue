@@ -120,7 +120,7 @@
 
                         Swal.fire({
                             title: 'Deleted!',
-                            text: 'Role Deleted Successfully.',
+                            text: 'User Deleted Successfully.',
                             icon: 'success',
                             timer: 2000,
                             showConfirmButton: false,

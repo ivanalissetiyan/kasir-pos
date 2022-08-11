@@ -36,14 +36,22 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(product, index) in products.data" :key="index">
-                                            <td class="text-center">{{ product.barcode }}</td>
+                                            <td class="text-center">
+                                                <Barcode
+                                                :value="product.barcode"
+                                                :format="'CODE39'"
+                                                :lineColor="'#000'"
+                                                :width="1"
+                                                :height="20"
+                                                />
+                                            </td>
                                             <td>{{ product.title }}</td>
                                             <td>Rp. {{ formatPrice(product.buy_price) }}</td>
                                             <td>Rp. {{ formatPrice(product.sell_price) }}</td>
                                             <td>{{ product.stock }}</td>
                                             <td class="text-center">
                                                 <Link :href="`/apps/products/${product.id}/edit`"
-                                                    v-if="hasAnyPermission(['categories.edit'])"
+                                                    v-if="hasAnyPermission(['products.edit'])"
                                                     class="btn btn-success btn-sm me-2"><i
                                                     class="fa fa-pencil-alt me-1"></i> EDIT</Link>
                                                 <button @click.prevent="destroy(product.id)"
@@ -83,6 +91,9 @@ import { Inertia } from '@inertiajs/inertia';
 // Import Sweet Alert 2
 import Swal from 'sweetalert2';
 
+// Import component barcode
+import Barcode from '../../../Components/Barcode.vue';
+
 export default {
 
     // Layout
@@ -92,7 +103,8 @@ export default {
     components: {
         Head,
         Link,
-        Pagination
+        Pagination,
+        Barcode
     },
 
     // Props
