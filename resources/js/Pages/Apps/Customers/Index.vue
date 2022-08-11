@@ -1,5 +1,4 @@
 <template>
-
     <Head>
         <title>Customers - Aplikasi Kasir</title>
     </Head>
@@ -30,8 +29,8 @@
                                         <tr>
                                             <th scope="col">Name</th>
                                             <th scope="col">No Telfon</th>
-                                            <th scope="col">Address</th>
-                                            <th scope="col" style="width:20%">Actions</th>
+                                            <th scope="col">Alamat</th>
+                                            <th scope="col" class="text-center" style="width:20%">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,7 +58,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </main> 
 </template>
 
 <script>
