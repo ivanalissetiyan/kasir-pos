@@ -86,7 +86,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        // Render with inertia
+        // Render with inertia (props)
         return Inertia::render('Apps/Customers/Edit', [
             'customer' => $customer,
         ]);
@@ -108,16 +108,12 @@ class CustomerController extends Controller
             'address' => 'required',
         ]);
 
-        // Check Password is empty
-        if ($request->password == '') {
-
-            // Update data customer
-            $customer->update([
-                'name' => $request->name,
-                'no_telp' => $request->no_telp,
-                'address' => $request->address,
-            ]);
-        }
+        // Update data customer
+        $customer->update([
+            'name' => $request->name,
+            'no_telp' => $request->no_telp,
+            'address' => $request->address,
+        ]);
 
         // redirect
         return redirect()->route('apps.customers.index');
