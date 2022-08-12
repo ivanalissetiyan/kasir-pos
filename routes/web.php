@@ -48,8 +48,26 @@ Route::prefix('apps')->group(function () {
         Route::resource('/products', \App\Http\Controllers\Apps\ProductController::class, ['as' => 'apps'])
             ->middleware('permission:products.index|products.create|products.edit|products.delete');
 
-        // Route resource products
+        // Route resource Custmers
         Route::resource('/customers', \App\Http\Controllers\Apps\CustomerController::class, ['as' => 'apps'])
             ->middleware('permission:customers.index|customers.create|customers.edit|customers.delete');
+
+        // Route Transaction
+        Route::get('/transactions', [\App\Http\Controllers\Apps\TransactionController::class, 'index'])->name('apps.transaction.index');
+
+        // Route Transaction Search Product
+        Route::post('/transactions/searchProduct', [\App\Http\Controllers\Apps\TransactionController::class, 'searchProduct'])->name('apps.transaction.searchProduct');
+
+        // Route Add To Cart
+        Route::post('/transactions/addToCart', [\App\Http\Controllers\Apps\TransactionController::class, 'addToCart'])->name('apps.transaction.addToCart');
+
+        // Route Transaction Destroy Cart
+        Route::post('/transactions/destroyCart', [\App\Http\Controllers\Apps\TransactionController::class, 'destroyCart'])->name('apps.transaction.destroyCart');
+
+        // Route Transaction Store
+        Route::post('/transactions/store', [\App\Http\Controllers\Apps\TransactionController::class, 'store'])->name('apps.transaction.store');
+
+        // Route Transaction Print
+        Route::get('/transactions/print', [\App\Http\Controllers\Apps\TransactionController::class, 'print'])->name('apps.transaction.print');
     });
 });
