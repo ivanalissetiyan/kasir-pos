@@ -52,7 +52,7 @@ class TransactionController extends Controller
         if (Product::whereId($request->product_id)->first()->stock < $request->qty) {
 
             // Redirect
-            return redirect()->back()->with('error', 'Stock Product Habus!.');
+            return redirect()->back()->with('error', 'Stock Product Habis!.');
         }
 
         // Check Cart
