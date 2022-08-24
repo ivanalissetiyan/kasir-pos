@@ -74,7 +74,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr style="background-color: #e6e6e7;">
-                                            <th scope="col">No</th>
+                                            <th scope="col">#</th>
                                             <th scope="col">Nama Produk</th>
                                             <th scope="col">Harga</th>
                                             <th scope="col">Qty</th>
@@ -82,7 +82,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <tr v-for="cart in carts" :key="cart.id">
+                                            <td class="text-center">
+                                                <button class="btn btn-danger btn-sm rounded-pill"><i class="fa fa-trash"></i></button>
+                                            </td>
+                                            <td>{{ cart.product.title }}</td>
+                                            <td>Rp. {{ formatPrice(cart.product.sell_price) }}</td>
+                                            <td class="text-center"> {{ cart.qty }}</td>
+                                            <td class="text-end">Rp. {{ formatPrice(cart.price) }}</td>
+                                        </tr>
+                                        <tr>
+                                           <td colspan="4" class="text-end fw-bold" style="background-color: #e6e6e7;">Total</td> 
+                                           <td colspan="4" class="text-end fw-bold" style="background-color: #e6e6e7;">Rp, {{ formatPrice(carts_total) }}</td> 
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <hr>
@@ -144,7 +156,8 @@ export default {
         auth: Object,
         customers: Array,
         carts_total: Number,
-        session: Object
+        session: Object,
+        carts: Array
     },
 
     // Compotition API
