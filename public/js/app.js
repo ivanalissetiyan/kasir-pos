@@ -23175,6 +23175,18 @@ __webpack_require__.r(__webpack_exports__);
           grandTotal.value = props.carts_total;
         }
       });
+    }; //method "destroyCart"
+
+
+    var destroyCart = function destroyCart(cart_id) {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_6__.Inertia.post('/apps/transactions/destroyCart', {
+        cart_id: cart_id
+      }, {
+        onSuccess: function onSuccess() {
+          //update state "grandTotal"
+          grandTotal.value = props.carts_total;
+        }
+      });
     };
 
     return {
@@ -23184,7 +23196,8 @@ __webpack_require__.r(__webpack_exports__);
       clearSearch: clearSearch,
       qty: qty,
       grandTotal: grandTotal,
-      addToCart: addToCart
+      addToCart: addToCart,
+      destroyCart: destroyCart
     };
   }
 });

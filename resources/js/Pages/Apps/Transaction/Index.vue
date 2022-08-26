@@ -227,6 +227,20 @@ export default {
             });
         }
 
+                    //method "destroyCart"
+            const destroyCart = (cart_id) => {
+                Inertia.post('/apps/transactions/destroyCart', {
+                    cart_id: cart_id
+                }, {
+                    onSuccess: () => {
+
+                        //update state "grandTotal"
+                        grandTotal.value = props.carts_total;
+                    },
+                })
+            }
+
+
         return {
             barcode,
             product,
@@ -234,7 +248,8 @@ export default {
             clearSearch,
             qty,
             grandTotal,
-            addToCart
+            addToCart,
+            destroyCart
         }
     }
 }
