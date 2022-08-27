@@ -15,7 +15,7 @@
                                         placeholder="scan or input barcode" @keyup="searchProduct">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">Product Name</label>
+                                    <label class="form-label fw-bold">Nama Produk</label>
                                     <input type="text" class="form-control" :value="product.title"
                                         placeholder="product name" readonly>
                                 </div>
@@ -84,7 +84,7 @@
                                     <tbody>
                                         <tr v-for="cart in carts" :key="cart.id">
                                             <td class="text-center">
-                                                <button class="btn btn-danger btn-sm rounded-pill"><i class="fa fa-trash"></i></button>
+                                                <button @click.prevent="destroyCart(cart.id)" class="btn btn-danger btn-sm rounded-pill"><i class="fa fa-trash"></i></button>
                                             </td>
                                             <td>{{ cart.product.title }}</td>
                                             <td>Rp. {{ formatPrice(cart.product.sell_price) }}</td>
