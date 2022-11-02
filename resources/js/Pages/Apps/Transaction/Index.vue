@@ -115,7 +115,7 @@
                                 <div class="text-end mt-4">
                                     <button
                                         class="btn btn-warning btn-md border-0 shadow text-uppercase me-2">Cancel</button>
-                                    <button @click.prevent="storeTransaction" class="btn btn-primary btn-md border-0 shadow text-uppercase" :disabled="cash < grandTotal || grandTotal == 0">Bayar Pesanan
+                                    <button @click.prevent="storeTransaction123" class="btn btn-primary btn-md border-0 shadow text-uppercase" :disabled="cash < grandTotal || grandTotal == 0">Bayar Pesanan
                                         & Print</button>
                                 </div>
                             </div>
