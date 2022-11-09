@@ -113,9 +113,8 @@
                                     </div>
                                 </div>
                                 <div class="text-end mt-4">
-                                    <button
-                                        class="btn btn-warning btn-md border-0 shadow text-uppercase me-2">Cancel</button>
-                                    <button @click.prevent="storeTransaction123" class="btn btn-primary btn-md border-0 shadow text-uppercase" :disabled="cash < grandTotal || grandTotal == 0">Bayar Pesanan
+                                    <button class="btn btn-warning btn-md border-0 shadow text-uppercase me-2">Cancel</button>
+                                    <button @click.prevent="storeTransaction" class="btn btn-primary btn-md border-0 shadow text-uppercase" :disabled="cash < grandTotal || grandTotal == 0">Bayar Pesanan
                                         & Print</button>
                                 </div>
                             </div>
@@ -144,6 +143,8 @@ import { ref } from 'vue';
 // import axios
 import axios from 'axios';
 import { Inertia } from '@inertiajs/inertia';
+
+import Swal from 'sweetalert2';
 
 export default {
     //layout
@@ -261,7 +262,7 @@ export default {
             const setDiscount = () => {
                 
                 // set grand total
-                grandTotal.value = props.carts_total - discount.value
+                grandTotal.value = props.carts_total - discount.value;
 
                 // set cash to "0"
                 cash.value = 0;
@@ -273,10 +274,68 @@ export default {
 
             // Method "setChange"
             const setChange = () => {
+                
                 // set change
                 change.value = cash.value - grandTotal.value;
             }         
 
+            // Define state 'customer_id'
+            const customer_id = ref('');
+
+            // Method "storeTransaction"
+            const storeTransaction = () => {
+                
+                // HTTP Request
+                axios.post('/apps/transactions/store', {
+
+                    // send data to server
+                    customer_id: customer_id.value ? customer_id.value.id : '',
+                    discount: discount.value,
+                    grand_total: grandTotal.value,
+                    cash: cash.value,
+                    change: change.value
+                })
+                .then(response => {
+                    
+                    // call method "clearSearch"
+                    clearSearch();
+
+                    // set qty to "1"
+                    qty.value = 1;
+
+                    // set grand total
+                    grandTotal.value = props.carts_total;
+
+                    // set cash to "0"
+                    cash.value = 0;
+                    
+                    // set change to "0"
+                    change.value = 0;
+
+                    // set customer_id to ""
+                    customer_id.value = ''
+
+                    // show success alert
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Transaction Successfully.',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    .then(() => {
+                        setTimeout(() => {
+                            
+                            // print
+                            window.open(`/apps/transactions/print?invoice=${response.data.data.invoice}`, '_blank');
+
+                            //reload page
+                            location.reload(); 
+                        }, 50);
+                    })
+                })
+            }
+        
         return {
             barcode,
             product,
@@ -291,6 +350,8 @@ export default {
             discount,
             setDiscount,
             setChange,
+            customer_id,
+            storeTransaction
         }
     }
 }
